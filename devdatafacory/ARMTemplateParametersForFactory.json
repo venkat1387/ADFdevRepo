@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "devdatafacory"
+		},
+		"AzureDatabricks1_accessToken": {
+			"value": ""
+		},
+		"LsDbs_accessToken": {
+			"value": ""
+		},
+		"LsOnPremSql_connectionString": {
+			"value": ""
+		},
+		"Ls_SqlDb_connectionString": {
+			"value": ""
+		},
+		"lnkblob_connectionString": {
+			"value": ""
+		},
+		"AzureDatabricks1_properties_typeProperties_existingClusterId": {
+			"value": "0812-100705-8iu0h17o"
+		},
+		"LsDbs_properties_typeProperties_existingClusterId": {
+			"value": "0812-100705-8iu0h17o"
+		}
+	}
+}
