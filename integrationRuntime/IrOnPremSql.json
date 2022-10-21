@@ -1,0 +1,6 @@
+{
+	"name": "IrOnPremSql",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}
