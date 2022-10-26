@@ -35,8 +35,15 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"writeBehavior": "insert",
-						"sqlWriterUseTableLock": false
+						"writeBehavior": "upsert",
+						"upsertSettings": {
+							"useTempDB": true,
+							"keys": [
+								"deptno"
+							]
+						},
+						"sqlWriterUseTableLock": false,
+						"disableMetricsCollection": false
 					},
 					"enableStaging": false,
 					"translator": {
@@ -50,13 +57,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "DS_CH",
+						"referenceName": "DS_Blob_Dept",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "CH_Sql",
+						"referenceName": "DsSqlDb",
 						"type": "DatasetReference"
 					}
 				]
