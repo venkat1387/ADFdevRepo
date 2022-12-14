@@ -24,6 +24,34 @@
 				"typeProperties": {
 					"source": {
 						"type": "DelimitedTextSource",
+						"additionalColumns": [
+							{
+								"name": "FileName",
+								"value": "$$FILEPATH"
+							},
+							{
+								"name": "PipelineName",
+								"value": {
+									"value": "@pipeline().Pipeline",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "DupEname",
+								"value": "$$COLUMN:ename"
+							},
+							{
+								"name": "StaticCol",
+								"value": {
+									"value": "Ind",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "CustCol",
+								"value": "Hi"
+							}
+						],
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
@@ -34,16 +62,15 @@
 						}
 					},
 					"sink": {
-						"type": "AzureSqlSink",
-						"writeBehavior": "upsert",
-						"upsertSettings": {
-							"useTempDB": true,
-							"keys": [
-								"deptno"
-							]
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
 						},
-						"sqlWriterUseTableLock": false,
-						"disableMetricsCollection": false
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".csv"
+						}
 					},
 					"enableStaging": false,
 					"translator": {
@@ -57,13 +84,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "DS_Blob_Dept",
+						"referenceName": "dsEMP",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "DsSqlDb",
+						"referenceName": "Ds_Output1",
 						"type": "DatasetReference"
 					}
 				]
