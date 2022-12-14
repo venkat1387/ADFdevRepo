@@ -1,0 +1,29 @@
+{
+	"name": "Ds_EmailList",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "lnkblob",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "EmailList.csv",
+				"folderPath": "Input",
+				"container": "dev"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Email_Id",
+				"type": "String"
+			}
+		]
+	}
+}
