@@ -97,11 +97,12 @@
 			},
 			{
 				"name": "Wait1",
+				"description": "Wait changed 5 to 15",
 				"type": "Wait",
 				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
-					"waitTimeInSeconds": 5
+					"waitTimeInSeconds": 15
 				}
 			}
 		],
