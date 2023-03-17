@@ -1,0 +1,34 @@
+{
+	"name": "DsSrcTblUser",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LsOnPremSQLserver",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "key",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "name",
+				"type": "varchar"
+			},
+			{
+				"name": "phone",
+				"type": "varchar"
+			},
+			{
+				"name": "last_m",
+				"type": "date"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tbluser"
+		}
+	}
+}

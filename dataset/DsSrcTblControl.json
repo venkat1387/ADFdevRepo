@@ -1,0 +1,27 @@
+{
+	"name": "DsSrcTblControl",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LsOnPremSQLserver",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "tblname",
+				"type": "varchar"
+			},
+			{
+				"name": "lastloaddate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tblcontrol"
+		}
+	}
+}
