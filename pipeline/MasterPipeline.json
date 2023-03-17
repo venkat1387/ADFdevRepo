@@ -1,0 +1,77 @@
+{
+	"name": "MasterPipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "Invoke PL_IncrementalLoad",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "PL_IncrementalLoad",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "OnSuccess",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "Invoke PL_IncrementalLoad",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://prod-12.centralus.logic.azure.com:443/workflows/bf64245a791a4aa6ac9e740907944a98/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=OmvYCldGIS4vKbuIDQJSVT5sxCVs0BVdtiZAaDaymPo",
+					"method": "POST",
+					"body": {
+						"value": "{\n        \"DataFactoryName\": \"@{pipeline().DataFactory}\",\n        \"EmailTo\":\"gmamatha510@gmail.com\" ,\n        \"ErrorMessage\":\"success\",\n        \"PipelineName\":\"@{pipeline().Pipeline}\",\n        \"Subject\":\"Pipeline success\",\n}",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "OnFailure",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "Invoke PL_IncrementalLoad",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://prod-12.centralus.logic.azure.com:443/workflows/bf64245a791a4aa6ac9e740907944a98/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=OmvYCldGIS4vKbuIDQJSVT5sxCVs0BVdtiZAaDaymPo",
+					"method": "POST",
+					"body": {
+						"value": "{\n        \"DataFactoryName\": \"@{pipeline().DataFactory}\",\n        \"EmailTo\":\"gmamatha510@gmail.com\" ,\n        \"ErrorMessage\":\"Filure\",\n        \"PipelineName\":\"@{pipeline().Pipeline}\",\n        \"Subject\":\"Pipeline Failed\",\n}",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"annotations": []
+	}
+}
