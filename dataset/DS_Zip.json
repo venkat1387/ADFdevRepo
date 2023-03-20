@@ -1,0 +1,30 @@
+{
+	"name": "DS_Zip",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "datalakegen2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "SalesFile.zip",
+				"folderPath": "Test",
+				"container": "dev"
+			},
+			"columnDelimiter": ",",
+			"compressionCodec": "ZipDeflate",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "PK\u0003\u0004\u0014\u0000\u0000\u0000\b\u0000�ztV򃌧:�\b\u0000��\b\u0000&\u0000\u0000\u0000pexels-polina-tankilevitch-3905907.jpg��\u0005X\\���ق����[ph\u001a\b4��]\u001b'@�����{\u0012��5�\u0004\t�\u0010\u001d�s���3w�Ν����{jI�UU�{����{\u0000\u001c\u0015E�\"\u0000\b\u0004\u0002�_.��\u0003\f}���\u001b",
+				"type": "String"
+			}
+		]
+	}
+}
