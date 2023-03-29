@@ -1,0 +1,10 @@
+{
+	"name": "KVlsLake",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://VNUkv.vault.azure.net/"
+		}
+	}
+}
