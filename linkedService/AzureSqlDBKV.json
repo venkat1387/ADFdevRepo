@@ -1,0 +1,17 @@
+{
+	"name": "AzureSqlDBKV",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"connectionString": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "KVlsLake",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "SQLsecret"
+			}
+		}
+	}
+}
