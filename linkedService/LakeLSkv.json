@@ -1,0 +1,17 @@
+{
+	"name": "LakeLSkv",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"connectionString": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "KVlsLake",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "LakeSecret"
+			}
+		}
+	}
+}
