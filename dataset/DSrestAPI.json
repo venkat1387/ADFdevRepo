@@ -1,0 +1,12 @@
+{
+	"name": "DSrestAPI",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LSrestAPI",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
