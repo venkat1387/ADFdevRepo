@@ -2,7 +2,7 @@
 	"name": "DSinput",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "LakeLSkv",
+			"referenceName": "datalakegen2",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
