@@ -76,6 +76,10 @@
 										"foldername": {
 											"value": "@item().foldername",
 											"type": "Expression"
+										},
+										"file": {
+											"value": "@item().filename",
+											"type": "Expression"
 										}
 									}
 								},
@@ -89,10 +93,6 @@
 								"storeSettings": {
 									"type": "AzureBlobStorageReadSettings",
 									"recursive": true,
-									"wildcardFileName": {
-										"value": "@{item().filename}",
-										"type": "Expression"
-									},
 									"enablePartitionDiscovery": false
 								}
 							}
