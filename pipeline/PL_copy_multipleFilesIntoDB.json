@@ -76,6 +76,10 @@
 								},
 								"sink": {
 									"type": "SqlServerSink",
+									"preCopyScript": {
+										"value": "truncate table dbo.emp;\ntruncate table dbo.dept",
+										"type": "Expression"
+									},
 									"writeBehavior": "insert",
 									"sqlWriterUseTableLock": false,
 									"tableOption": "autoCreate"
