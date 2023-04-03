@@ -1,0 +1,49 @@
+{
+	"name": "DSsqlServerDest",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LsOnPremSQLserver",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "EMPNO",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ENAME",
+				"type": "nvarchar"
+			},
+			{
+				"name": "JOB",
+				"type": "nvarchar"
+			},
+			{
+				"name": "MGR",
+				"type": "nvarchar"
+			},
+			{
+				"name": "HIREDATE",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SAL",
+				"type": "nvarchar"
+			},
+			{
+				"name": "COMM",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DEPTNO",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "emp_dest"
+		}
+	}
+}
