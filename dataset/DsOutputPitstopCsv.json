@@ -1,0 +1,24 @@
+{
+	"name": "DsOutputPitstopCsv",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LakeLSkv",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "pit_stops.csv",
+				"folderPath": "Test/output",
+				"container": "dev"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

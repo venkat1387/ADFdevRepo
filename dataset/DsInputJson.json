@@ -1,0 +1,45 @@
+{
+	"name": "DsInputJson",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LakeLSkv",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "pit_stops.json",
+				"folderPath": "Test/input",
+				"container": "dev"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"raceId": {
+					"type": "integer"
+				},
+				"driverId": {
+					"type": "integer"
+				},
+				"stop": {
+					"type": "integer"
+				},
+				"lap": {
+					"type": "integer"
+				},
+				"time": {
+					"type": "string"
+				},
+				"duration": {
+					"type": "number"
+				},
+				"milliseconds": {
+					"type": "integer"
+				}
+			}
+		}
+	}
+}
