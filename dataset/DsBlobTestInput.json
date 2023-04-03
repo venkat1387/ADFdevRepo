@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
+				"fileName": "emp_dest.txt",
 				"folderPath": "Test/input",
 				"container": "dev"
 			},
