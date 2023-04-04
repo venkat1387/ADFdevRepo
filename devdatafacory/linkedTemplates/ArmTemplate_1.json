@@ -1403,7 +1403,7 @@
 											},
 											"rowcnt": {
 												"value": {
-													"value": "@activity('Copy data into sql db').output.rowsCopied",
+													"value": "@activity('Copy data into sql db').output.rowsCopieddd",
 													"type": "Expression"
 												},
 												"type": "Int32"
@@ -1539,7 +1539,7 @@
 					"recurrence": {
 						"frequency": "Day",
 						"interval": 1,
-						"startTime": "2023-04-04T17:15:00",
+						"startTime": "2023-04-04T17:25:00",
 						"timeZone": "India Standard Time",
 						"schedule": {}
 					}
