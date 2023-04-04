@@ -5,11 +5,32 @@
 		"factoryName": {
 			"value": "devdatafacory"
 		},
-		"Ls_SqlDb_connectionString": {
+		"AzureSqlDatabase1_connectionString": {
 			"value": ""
 		},
-		"lnkblob_connectionString": {
+		"LsOnPremSQLserver_connectionString": {
+			"value": "Integrated Security=True;Data Source=LAPTOP-2I24GOME;Initial Catalog=db1"
+		},
+		"LsOnPremSQLserver_password": {
 			"value": ""
+		},
+		"datalakegen2_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDBKV_properties_typeProperties_connectionString_secretName": {
+			"value": "SQLsecret"
+		},
+		"KVlsLake_properties_typeProperties_baseUrl": {
+			"value": "https://VNUkv.vault.azure.net/"
+		},
+		"LSrestAPI_properties_typeProperties_url": {
+			"value": "https://reqres.in/api/users"
+		},
+		"LakeLSkv_properties_typeProperties_connectionString_secretName": {
+			"value": "LakeSecret"
+		},
+		"LsOnPremSQLserver_properties_typeProperties_userName": {
+			"value": "venky"
 		},
 		"containerUri": {
 			"value": ""

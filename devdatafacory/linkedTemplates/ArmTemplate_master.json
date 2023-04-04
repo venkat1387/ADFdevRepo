@@ -7,13 +7,42 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "devdatafacory"
 		},
-		"Ls_SqlDb_connectionString": {
+		"AzureSqlDatabase1_connectionString": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'Ls_SqlDb'"
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1'"
 		},
-		"lnkblob_connectionString": {
+		"LsOnPremSQLserver_connectionString": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'lnkblob'"
+			"metadata": "Secure string for 'connectionString' of 'LsOnPremSQLserver'",
+			"defaultValue": "Integrated Security=True;Data Source=LAPTOP-2I24GOME;Initial Catalog=db1"
+		},
+		"LsOnPremSQLserver_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LsOnPremSQLserver'"
+		},
+		"datalakegen2_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'datalakegen2'"
+		},
+		"AzureSqlDBKV_properties_typeProperties_connectionString_secretName": {
+			"type": "string",
+			"defaultValue": "SQLsecret"
+		},
+		"KVlsLake_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://VNUkv.vault.azure.net/"
+		},
+		"LSrestAPI_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://reqres.in/api/users"
+		},
+		"LakeLSkv_properties_typeProperties_connectionString_secretName": {
+			"type": "string",
+			"defaultValue": "LakeSecret"
+		},
+		"LsOnPremSQLserver_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "venky"
 		},
 		"containerUri": {
 			"type": "string",
@@ -42,15 +71,56 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"Ls_SqlDb_connectionString": {
-						"value": "[parameters('Ls_SqlDb_connectionString')]"
+					"AzureSqlDatabase1_connectionString": {
+						"value": "[parameters('AzureSqlDatabase1_connectionString')]"
 					},
-					"lnkblob_connectionString": {
-						"value": "[parameters('lnkblob_connectionString')]"
+					"datalakegen2_connectionString": {
+						"value": "[parameters('datalakegen2_connectionString')]"
+					},
+					"LsOnPremSQLserver_connectionString": {
+						"value": "[parameters('LsOnPremSQLserver_connectionString')]"
+					},
+					"LsOnPremSQLserver_password": {
+						"value": "[parameters('LsOnPremSQLserver_password')]"
+					},
+					"KVlsLake_properties_typeProperties_baseUrl": {
+						"value": "[parameters('KVlsLake_properties_typeProperties_baseUrl')]"
+					},
+					"LSrestAPI_properties_typeProperties_url": {
+						"value": "[parameters('LSrestAPI_properties_typeProperties_url')]"
+					},
+					"AzureSqlDBKV_properties_typeProperties_connectionString_secretName": {
+						"value": "[parameters('AzureSqlDBKV_properties_typeProperties_connectionString_secretName')]"
+					},
+					"LakeLSkv_properties_typeProperties_connectionString_secretName": {
+						"value": "[parameters('LakeLSkv_properties_typeProperties_connectionString_secretName')]"
+					},
+					"LsOnPremSQLserver_properties_typeProperties_userName": {
+						"value": "[parameters('LsOnPremSQLserver_properties_typeProperties_userName')]"
 					}
 				}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "devdatafacory_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'devdatafacory_ArmTemplate_0')]"
+			]
 		}
 	]
 }
