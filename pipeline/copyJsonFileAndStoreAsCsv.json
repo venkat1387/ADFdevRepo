@@ -1,0 +1,133 @@
+{
+	"name": "copyJsonFileAndStoreAsCsv",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"enableSkipIncompatibleRow": true,
+					"logSettings": {
+						"enableCopyActivityLog": true,
+						"copyActivityLogSettings": {
+							"logLevel": "Warning",
+							"enableReliableLogging": false
+						},
+						"logLocationSettings": {
+							"linkedServiceName": {
+								"referenceName": "LakeLSkv",
+								"type": "LinkedServiceReference"
+							}
+						}
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['raceId']"
+								},
+								"sink": {
+									"name": "raceId"
+								}
+							},
+							{
+								"source": {
+									"path": "$['driverId']"
+								},
+								"sink": {
+									"name": "driverId"
+								}
+							},
+							{
+								"source": {
+									"path": "$['stop']"
+								},
+								"sink": {
+									"name": "stop"
+								}
+							},
+							{
+								"source": {
+									"path": "$['lap']"
+								},
+								"sink": {
+									"name": "lap"
+								}
+							},
+							{
+								"source": {
+									"path": "$['time']"
+								},
+								"sink": {
+									"name": "time"
+								}
+							},
+							{
+								"source": {
+									"path": "$['duration']"
+								},
+								"sink": {
+									"name": "duration"
+								}
+							},
+							{
+								"source": {
+									"path": "$['milliseconds']"
+								},
+								"sink": {
+									"name": "milliseconds"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DsInputJson",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DsOutputPitstopCsv",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}
