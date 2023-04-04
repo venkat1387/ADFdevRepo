@@ -152,7 +152,7 @@
 									},
 									"rowcnt": {
 										"value": {
-											"value": "@activity('Copy data into sql db').output.rowsCopieddd",
+											"value": "@activity('Copy data into sql db').output.rowsCopied",
 											"type": "Expression"
 										},
 										"type": "Int32"
