@@ -1,0 +1,23 @@
+{
+	"name": "DSlocalfileIntoBlob",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "datalakegen2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "SalesRecords5m.csv",
+				"folderPath": "Test/input",
+				"container": "dev"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
