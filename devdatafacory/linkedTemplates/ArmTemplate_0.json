@@ -24,6 +24,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'LsOnPremSQLserver'"
 		},
+		"LSFileServer1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LSFileServer1'"
+		},
 		"KVlsLake_properties_typeProperties_baseUrl": {
 			"type": "string",
 			"defaultValue": "https://VNUkv.vault.azure.net/"
@@ -41,6 +45,14 @@
 			"defaultValue": "LakeSecret"
 		},
 		"LsOnPremSQLserver_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "venky"
+		},
+		"LSFileServer1_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "\\\\LAPTOP-2I24GOME\\Azure"
+		},
+		"LSFileServer1_properties_typeProperties_userId": {
 			"type": "string",
 			"defaultValue": "venky"
 		}
@@ -414,6 +426,58 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/LSFileServer1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "FileServer",
+				"typeProperties": {
+					"host": "[parameters('LSFileServer1_properties_typeProperties_host')]",
+					"userId": "[parameters('LSFileServer1_properties_typeProperties_userId')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('LSFileServer1_password')]"
+					}
+				},
+				"connectVia": {
+					"referenceName": "IrOnPremSql",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/integrationRuntimes/IrOnPremSql')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DSlocalfileIntoBlob')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "datalakegen2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "SalesRecords5m.csv",
+						"folderPath": "Test/input",
+						"container": "dev"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/datalakegen2')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Pl_ZipFile')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -646,94 +710,6 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDBKV')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DSkvEMPsink')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LakeLSkv",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "emp.csv",
-						"folderPath": "Test/input",
-						"container": "dev"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "Id",
-						"type": "String"
-					},
-					{
-						"name": "Sales",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/LakeLSkv')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DSmultipleFiles')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LakeLSkv",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"FileName": {
-						"type": "string"
-					}
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": {
-							"value": "@dataset().FileName",
-							"type": "Expression"
-						},
-						"folderPath": "Test/input",
-						"container": "dev"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "Deptno",
-						"type": "String"
-					},
-					{
-						"name": "Dname",
-						"type": "String"
-					},
-					{
-						"name": "Loc",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/LakeLSkv')]"
 			]
 		}
 	]

@@ -17,6 +17,9 @@
 		"datalakegen2_connectionString": {
 			"value": ""
 		},
+		"LSFileServer1_password": {
+			"value": ""
+		},
 		"AzureSqlDBKV_properties_typeProperties_connectionString_secretName": {
 			"value": "SQLsecret"
 		},
@@ -30,6 +33,12 @@
 			"value": "LakeSecret"
 		},
 		"LsOnPremSQLserver_properties_typeProperties_userName": {
+			"value": "venky"
+		},
+		"LSFileServer1_properties_typeProperties_host": {
+			"value": "\\\\LAPTOP-2I24GOME\\Azure"
+		},
+		"LSFileServer1_properties_typeProperties_userId": {
 			"value": "venky"
 		},
 		"containerUri": {

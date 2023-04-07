@@ -24,6 +24,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'datalakegen2'"
 		},
+		"LSFileServer1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LSFileServer1'"
+		},
 		"AzureSqlDBKV_properties_typeProperties_connectionString_secretName": {
 			"type": "string",
 			"defaultValue": "SQLsecret"
@@ -41,6 +45,14 @@
 			"defaultValue": "LakeSecret"
 		},
 		"LsOnPremSQLserver_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "venky"
+		},
+		"LSFileServer1_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "\\\\LAPTOP-2I24GOME\\Azure"
+		},
+		"LSFileServer1_properties_typeProperties_userId": {
 			"type": "string",
 			"defaultValue": "venky"
 		},
@@ -83,6 +95,9 @@
 					"LsOnPremSQLserver_password": {
 						"value": "[parameters('LsOnPremSQLserver_password')]"
 					},
+					"LSFileServer1_password": {
+						"value": "[parameters('LSFileServer1_password')]"
+					},
 					"KVlsLake_properties_typeProperties_baseUrl": {
 						"value": "[parameters('KVlsLake_properties_typeProperties_baseUrl')]"
 					},
@@ -97,6 +112,12 @@
 					},
 					"LsOnPremSQLserver_properties_typeProperties_userName": {
 						"value": "[parameters('LsOnPremSQLserver_properties_typeProperties_userName')]"
+					},
+					"LSFileServer1_properties_typeProperties_host": {
+						"value": "[parameters('LSFileServer1_properties_typeProperties_host')]"
+					},
+					"LSFileServer1_properties_typeProperties_userId": {
+						"value": "[parameters('LSFileServer1_properties_typeProperties_userId')]"
 					}
 				}
 			},
@@ -120,6 +141,26 @@
 			},
 			"dependsOn": [
 				"[resourceId('Microsoft.Resources/deployments', 'devdatafacory_ArmTemplate_0')]"
+			]
+		},
+		{
+			"name": "devdatafacory_ArmTemplate_2",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_2.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'devdatafacory_ArmTemplate_1')]"
 			]
 		}
 	]
