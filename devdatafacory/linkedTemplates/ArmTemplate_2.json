@@ -434,6 +434,7 @@
 								"type": "DelimitedTextSource",
 								"storeSettings": {
 									"type": "FileServerReadSettings",
+									"maxConcurrentConnections": 4,
 									"recursive": true,
 									"enablePartitionDiscovery": false
 								},
