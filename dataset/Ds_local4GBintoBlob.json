@@ -1,0 +1,22 @@
+{
+	"name": "Ds_local4GBintoBlob",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LakeLSkv",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "Test/output",
+				"container": "dev"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
