@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'datalakegen2'"
 		},
+		"LSFileServer1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LSFileServer1'"
+		},
 		"LsOnPremSQLserver_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'LsOnPremSQLserver'",
@@ -23,10 +27,6 @@
 		"LsOnPremSQLserver_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'LsOnPremSQLserver'"
-		},
-		"LSFileServer1_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'LSFileServer1'"
 		},
 		"KVlsLake_properties_typeProperties_baseUrl": {
 			"type": "string",
@@ -40,19 +40,19 @@
 			"type": "string",
 			"defaultValue": "SQLsecret"
 		},
-		"LakeLSkv_properties_typeProperties_connectionString_secretName": {
-			"type": "string",
-			"defaultValue": "LakeSecret"
-		},
-		"LsOnPremSQLserver_properties_typeProperties_userName": {
-			"type": "string",
-			"defaultValue": "venky"
-		},
 		"LSFileServer1_properties_typeProperties_host": {
 			"type": "string",
 			"defaultValue": "\\\\LAPTOP-2I24GOME\\Azure"
 		},
 		"LSFileServer1_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "venky"
+		},
+		"LakeLSkv_properties_typeProperties_connectionString_secretName": {
+			"type": "string",
+			"defaultValue": "LakeSecret"
+		},
+		"LsOnPremSQLserver_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "venky"
 		}
@@ -235,6 +235,34 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/DSlocalfileIntoBlob')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "datalakegen2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "SalesRecords5m.csv",
+						"folderPath": "Test/input",
+						"container": "dev"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/datalakegen2')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/DSrestAPI')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -380,6 +408,30 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/LSFileServer1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "FileServer",
+				"typeProperties": {
+					"host": "[parameters('LSFileServer1_properties_typeProperties_host')]",
+					"userId": "[parameters('LSFileServer1_properties_typeProperties_userId')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('LSFileServer1_password')]"
+					}
+				},
+				"connectVia": {
+					"referenceName": "IrOnPremSql",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/integrationRuntimes/IrOnPremSql')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/LakeLSkv')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -423,58 +475,6 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/integrationRuntimes/IrOnPremSql')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/LSFileServer1')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "FileServer",
-				"typeProperties": {
-					"host": "[parameters('LSFileServer1_properties_typeProperties_host')]",
-					"userId": "[parameters('LSFileServer1_properties_typeProperties_userId')]",
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('LSFileServer1_password')]"
-					}
-				},
-				"connectVia": {
-					"referenceName": "IrOnPremSql",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/IrOnPremSql')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DSlocalfileIntoBlob')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "datalakegen2",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "SalesRecords5m.csv",
-						"folderPath": "Test/input",
-						"container": "dev"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"quoteChar": "\""
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/datalakegen2')]"
 			]
 		},
 		{

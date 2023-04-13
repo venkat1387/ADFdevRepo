@@ -8,6 +8,9 @@
 		"AzureSqlDatabase1_connectionString": {
 			"value": ""
 		},
+		"LSFileServer1_password": {
+			"value": ""
+		},
 		"LsOnPremSQLserver_connectionString": {
 			"value": "Integrated Security=True;Data Source=LAPTOP-2I24GOME;Initial Catalog=db1"
 		},
@@ -17,14 +20,17 @@
 		"datalakegen2_connectionString": {
 			"value": ""
 		},
-		"LSFileServer1_password": {
-			"value": ""
-		},
 		"AzureSqlDBKV_properties_typeProperties_connectionString_secretName": {
 			"value": "SQLsecret"
 		},
 		"KVlsLake_properties_typeProperties_baseUrl": {
 			"value": "https://VNUkv.vault.azure.net/"
+		},
+		"LSFileServer1_properties_typeProperties_host": {
+			"value": "\\\\LAPTOP-2I24GOME\\Azure"
+		},
+		"LSFileServer1_properties_typeProperties_userId": {
+			"value": "venky"
 		},
 		"LSrestAPI_properties_typeProperties_url": {
 			"value": "https://reqres.in/api/users"
@@ -33,12 +39,6 @@
 			"value": "LakeSecret"
 		},
 		"LsOnPremSQLserver_properties_typeProperties_userName": {
-			"value": "venky"
-		},
-		"LSFileServer1_properties_typeProperties_host": {
-			"value": "\\\\LAPTOP-2I24GOME\\Azure"
-		},
-		"LSFileServer1_properties_typeProperties_userId": {
 			"value": "venky"
 		},
 		"containerUri": {

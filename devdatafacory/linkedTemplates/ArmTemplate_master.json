@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1'"
 		},
+		"LSFileServer1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LSFileServer1'"
+		},
 		"LsOnPremSQLserver_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'LsOnPremSQLserver'",
@@ -24,10 +28,6 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'datalakegen2'"
 		},
-		"LSFileServer1_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'LSFileServer1'"
-		},
 		"AzureSqlDBKV_properties_typeProperties_connectionString_secretName": {
 			"type": "string",
 			"defaultValue": "SQLsecret"
@@ -35,6 +35,14 @@
 		"KVlsLake_properties_typeProperties_baseUrl": {
 			"type": "string",
 			"defaultValue": "https://VNUkv.vault.azure.net/"
+		},
+		"LSFileServer1_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "\\\\LAPTOP-2I24GOME\\Azure"
+		},
+		"LSFileServer1_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "venky"
 		},
 		"LSrestAPI_properties_typeProperties_url": {
 			"type": "string",
@@ -45,14 +53,6 @@
 			"defaultValue": "LakeSecret"
 		},
 		"LsOnPremSQLserver_properties_typeProperties_userName": {
-			"type": "string",
-			"defaultValue": "venky"
-		},
-		"LSFileServer1_properties_typeProperties_host": {
-			"type": "string",
-			"defaultValue": "\\\\LAPTOP-2I24GOME\\Azure"
-		},
-		"LSFileServer1_properties_typeProperties_userId": {
 			"type": "string",
 			"defaultValue": "venky"
 		},
@@ -89,14 +89,14 @@
 					"datalakegen2_connectionString": {
 						"value": "[parameters('datalakegen2_connectionString')]"
 					},
+					"LSFileServer1_password": {
+						"value": "[parameters('LSFileServer1_password')]"
+					},
 					"LsOnPremSQLserver_connectionString": {
 						"value": "[parameters('LsOnPremSQLserver_connectionString')]"
 					},
 					"LsOnPremSQLserver_password": {
 						"value": "[parameters('LsOnPremSQLserver_password')]"
-					},
-					"LSFileServer1_password": {
-						"value": "[parameters('LSFileServer1_password')]"
 					},
 					"KVlsLake_properties_typeProperties_baseUrl": {
 						"value": "[parameters('KVlsLake_properties_typeProperties_baseUrl')]"
@@ -107,17 +107,17 @@
 					"AzureSqlDBKV_properties_typeProperties_connectionString_secretName": {
 						"value": "[parameters('AzureSqlDBKV_properties_typeProperties_connectionString_secretName')]"
 					},
-					"LakeLSkv_properties_typeProperties_connectionString_secretName": {
-						"value": "[parameters('LakeLSkv_properties_typeProperties_connectionString_secretName')]"
-					},
-					"LsOnPremSQLserver_properties_typeProperties_userName": {
-						"value": "[parameters('LsOnPremSQLserver_properties_typeProperties_userName')]"
-					},
 					"LSFileServer1_properties_typeProperties_host": {
 						"value": "[parameters('LSFileServer1_properties_typeProperties_host')]"
 					},
 					"LSFileServer1_properties_typeProperties_userId": {
 						"value": "[parameters('LSFileServer1_properties_typeProperties_userId')]"
+					},
+					"LakeLSkv_properties_typeProperties_connectionString_secretName": {
+						"value": "[parameters('LakeLSkv_properties_typeProperties_connectionString_secretName')]"
+					},
+					"LsOnPremSQLserver_properties_typeProperties_userName": {
+						"value": "[parameters('LsOnPremSQLserver_properties_typeProperties_userName')]"
 					}
 				}
 			},
